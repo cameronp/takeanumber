@@ -8,6 +8,7 @@ defmodule Takeanumber do
 
     children = [
       worker(Takeanumber.Stash, [1]),
+      worker(Takeanumber.Workspace, [%{}]),
       worker(Takeanumber.NumberGen, [])
     ]
 
