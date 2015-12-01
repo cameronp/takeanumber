@@ -21,4 +21,11 @@ defmodule WorkspaceTest do
     Workspace.set(:bar, 2)
     assert Workspace.get(:bar) == 2
   end
+
+  test "will create element if none exists" do
+    assert Workspace.get(:baz, %{}) == %{}
+    Workspace.set(:baz, %{foo: 1})
+    assert Workspace.get(:baz, %{}) == %{foo: 1}
+  end
+
 end

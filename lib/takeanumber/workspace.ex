@@ -2,6 +2,11 @@ defmodule Takeanumber.Workspace do
   use GenServer
 
   def get(key), do: GenServer.call(__MODULE__, {:get, key})
+  def get(key, default) do
+    unless get(key), do: set(key, default)
+    get(key)
+  end
+
   def set(key, value), do: GenServer.cast(__MODULE__, {:set, key, value})
 
   def start_link(initial_state), do: GenServer.start_link(__MODULE__, initial_state,  [name: __MODULE__])
